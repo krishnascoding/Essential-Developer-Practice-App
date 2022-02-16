@@ -12,8 +12,11 @@ import Foundation
 class ApiClient {
     static let shared = ApiClient()
     
-    init() {}
-    
+    private init() {}
+}
+
+// App Target extension for login closure
+extension ApiClient {
     func login(completion: (User) -> Void) {
         completion(User(name: "Bob"))
     }

@@ -12,11 +12,15 @@ struct User {
 }
 
 class LoginViewController: UIViewController {
+    var login: (((User) -> Void) -> Void)?
     var user: User?
-    var api = ApiClient.shared
     
     func didTapLogin() {
-        api.login { [weak self] user in
+        guard let login = login else {
+            user = nil
+            return
+        }
+        login { [weak self] user in
             self?.user = user
         }
     }
